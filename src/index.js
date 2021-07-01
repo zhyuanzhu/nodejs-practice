@@ -1,5 +1,6 @@
 const app = require('./app');
+const config = require('./app/config');
 
-app.listen(8888, () => {
-  console.log(`服务器启动成功`)
+app.listen(config.APP_PORT, () => {
+  console.log(`服务器启动成功，port: ${config.APP_PORT}`)
 })
