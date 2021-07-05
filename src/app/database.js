@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
 const config = require('./config');
 
@@ -20,6 +20,6 @@ connections.getConnection((err, conn) => {
   });
 });
 
-module.exports = connections.promise;
+module.exports = connections;
 
 
