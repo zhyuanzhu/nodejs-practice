@@ -9,6 +9,13 @@ class UserService {
 
     return result;
   }
+
+  async queryUserByName (name) {
+    const statement = `SELECT * FROM users WHERE name = ?;`;
+    const result = await connection.execute(statement, [name]);
+
+    return result;
+  }
 }
 
 module.exports = new UserService();

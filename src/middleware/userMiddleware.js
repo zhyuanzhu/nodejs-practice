@@ -1,4 +1,5 @@
 const errorType = require('../constants/error-types');
+const service = require('../service/userService');
 
 const verifyUser = async (ctx, next) => {
 
@@ -13,6 +14,11 @@ const verifyUser = async (ctx, next) => {
   }
 
   // 判断用户名是否已经注册了
+  const result = await service.queryUserByName(name);
+  if (result.length) {
+    const error = new Error(errorType.USER_NAME_ALREADY_EXISTS);
+    return ctx.app.emit('error', error, ctx);
+  }
 
   await next();
 
