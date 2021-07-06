@@ -14,7 +14,7 @@ class UserService {
     const statement = `SELECT * FROM users WHERE name = ?;`;
     const result = await connection.execute(statement, [name]);
 
-    return result;
+    return result[0];
   }
 }
 
