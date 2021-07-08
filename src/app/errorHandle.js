@@ -11,6 +11,14 @@ function errorHandler (error, ctx) {
       status = 200;  
       message = '该用户名已经注册了';
       break;
+    case errorTypes.USER_DOES_NOT_EXISTS:
+      status = 200;
+      message = '用户不存在';
+      break;
+    case errorTypes.USER_NAME_OR_PASSWORD_ERROR:
+      status = 200;
+      message = '用户名或者密码错误';
+      break;
     default:
       status = 404;
       message = 'NOT FOUND ~'

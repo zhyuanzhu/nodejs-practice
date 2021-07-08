@@ -4,8 +4,12 @@ const authRouter = new Router();
 
 const {
   login
-} = require('../controller/authController')
+} = require('../controller/authController');
 
-authRouter.post('/login', login);
+const {
+  verifyLogin
+} = require('../middleware/authMiddleware');
+
+authRouter.post('/login', verifyLogin, login);
 
 module.exports = authRouter;
