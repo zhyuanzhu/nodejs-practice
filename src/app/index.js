@@ -1,19 +1,15 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
-const userRouter = require('../router/userRouter');
-const authRouter = require('../router/authRouter');
+const useRoutes = require('../router/index');
 const errorHandler = require('../app/errorHandle');
 
 const app = new Koa();
 
+app.useRoutes = useRoutes;
+
 app.use(bodyParser());
 
-// 请求路径和中间件映射关系
-app.use(userRouter.routes());
-app.use(userRouter.allowedMethods());
-
-app.use(authRouter.routes());
-app.use(authRouter.allowedMethods());
+app.useRoutes();
 
 app.on('error', errorHandler);
 
