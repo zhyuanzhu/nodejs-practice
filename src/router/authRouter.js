@@ -7,9 +7,13 @@ const {
 } = require('../controller/authController');
 
 const {
+  verifyNameAndPwd
+} = require('../middleware/verifyNameAndPwd');
+
+const {
   verifyLogin
 } = require('../middleware/authMiddleware');
 
-authRouter.post('/login', verifyLogin, login);
+authRouter.post('/login', verifyNameAndPwd, verifyLogin, login);
 
 module.exports = authRouter;

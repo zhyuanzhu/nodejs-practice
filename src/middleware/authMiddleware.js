@@ -24,7 +24,7 @@ const verifyLogin = async (ctx, next) => {
 
   // 判断密码是否正确
   const pwd = md5Password(password);
-  if (pwd !== password) {
+  if (pwd !== user.password) {
     const error = new Error(errorType.USER_NAME_OR_PASSWORD_ERROR);
     return ctx.app.emit('error', error, ctx);
   }
