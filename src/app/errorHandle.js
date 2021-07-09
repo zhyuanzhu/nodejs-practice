@@ -19,6 +19,10 @@ function errorHandler (error, ctx) {
       status = 200;
       message = '用户名或者密码错误';
       break;
+    case errorTypes.UNAUTHORIZED:
+      status = 200;
+      message = '用户未授权';
+      break;
     default:
       status = 404;
       message = 'NOT FOUND ~'
