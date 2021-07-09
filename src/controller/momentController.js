@@ -21,6 +21,16 @@ class MomentController {
     const result = await momentService.create(userId, content);
     ctx.body = result;
   }
+
+  async detail (ctx, next) {
+    // 获取 动态 id
+    const momentId = ctx.params.momentId;
+
+    // 数据库中查询
+    const result = await momentService.queryMomentById(momentId);
+
+    ctx.body = result;
+  }
 }
 
 module.exports = new MomentController();
