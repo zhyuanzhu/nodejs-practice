@@ -13,6 +13,20 @@ class MomentService {
     const [result] = await connections.execute(statement, [momentId]);
     return result[0];
   }
+
+  async queryMomentList (offset, size) {
+    console.log(typeof offset, size);
+    const statement = `SELECT m.id id, m.content content, m.createAt createAt, m.updateAt updateAt, JSON_OBJECT('user_name', u.name,'id', u.id) users FROM moment m LEFT JOIN users u ON m.user_id = u.id LIMIT ?,?;`;
+    try {
+      const result = await connections.execute(statement, [offset, size]);
+      return result[0];
+    } catch (error) {
+      console.log(error.message)
+    }
+    
+    // console.log(result)
+    // return result;
+  }
 }
 
 module.exports = new MomentService();

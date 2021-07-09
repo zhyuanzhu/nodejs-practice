@@ -31,6 +31,15 @@ class MomentController {
 
     ctx.body = result;
   }
+
+  async list (ctx, next) {
+    // 数据分页查询
+    const { page = 1, pageSize = 20 } = ctx.query;
+
+    // 查询列表
+    const result = await momentService.queryMomentList(page, pageSize);
+    ctx.body = result;
+  }
 }
 
 module.exports = new MomentController();

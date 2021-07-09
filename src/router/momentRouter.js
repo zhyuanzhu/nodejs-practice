@@ -5,6 +5,7 @@ const momentRouter = new Router({ prefix: '/moment' });
 const {
   create,
   detail,
+  list,
 } = require('../controller/momentController');
 
 const {
@@ -12,6 +13,7 @@ const {
 } = require('../middleware/authMiddleware');
 
 momentRouter.post('/', verifyAuth, create);
-momentRouter.get('/:momentId', detail);
+momentRouter.get('/detail/:momentId', detail);
+momentRouter.get('/list', list);
 
 module.exports = momentRouter;
