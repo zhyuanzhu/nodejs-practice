@@ -8,7 +8,8 @@ class MomentService {
   }
 
   async queryMomentById (momentId) {
-    const statement = `SELECT * FROM moment WHERE id = ?;`;
+    // const statement = `SELECT * FROM moment WHERE id = ?;`;
+    const statement = `SELECT m.id id, m.content content, m.createAt createAt, m.updateAt updateAt, JSON_OBJECT('user_name', u.name, 'id', u.id) users FROM moment m LEFT JOIN users u ON m.user_id = u.id WHERE m.id = ?;`
     const [result] = await connections.execute(statement, [momentId]);
     return result[0];
   }
