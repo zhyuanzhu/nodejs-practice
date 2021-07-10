@@ -28,7 +28,16 @@ class CommentService {
     const [result] = await connections.execute(statement, [commentId]);
     return result;
   }
-
+  /**
+   * 获取一条动态下面的所有评论信息，包含当前评论的用户信息
+   *  SELECT
+        m.id, m.content, m.comment_id commentId, m.createAt createTime,
+        JSON_OBJECT('id', u.id, 'name', u.`name`) user
+      FROM comment m
+      LEFT JOIN users u ON u.id = m.user_id
+      WHERE moment_id = 1; 
+   * 
+   */
   async getCommentsByMomentId (momentId) {
     const statement = `SELECT * FROM comment WHERE moment_id = ?;`;
     const [result] = await connections.execute(statement, [momentId]);
