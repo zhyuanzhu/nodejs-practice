@@ -22,9 +22,6 @@ class MomentService {
     } catch (error) {
       console.log(error.message)
     }
-    
-    // console.log(result)
-    // return result;
   }
 
   async update (content, momentId) {
