@@ -7,10 +7,13 @@ const {
 
 const {
   create,
+  list,
 } = require('../controller/labelController');
 
 const labelRouter = new Router({prefix: '/label'});
 
 labelRouter.post('/create', verifyAuth, create);
+
+labelRouter.get('/list', list);
 
 module.exports = labelRouter;
