@@ -9,6 +9,7 @@ const {
   create,
   reply,
   update,
+  remove,
 } = require('../controller/commentController');
 
 
@@ -22,5 +23,6 @@ commentRouter.post('/reply', verifyAuth, reply);
 // 修改评论
 commentRouter.post('/update', verifyAuth, verifyPermission('comment'), update);
 // 删除评论
+commentRouter.post('/delete', verifyAuth, verifyPermission('comment'), remove)
 
 module.exports = commentRouter;
