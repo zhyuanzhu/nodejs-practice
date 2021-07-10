@@ -18,7 +18,7 @@ const {
 momentRouter.post('/', verifyAuth, create);
 momentRouter.get('/detail/:momentId', detail);
 momentRouter.get('/list', list);
-momentRouter.post('/update', verifyAuth, verifyPermission, update);
-momentRouter.post('/delete', verifyAuth, verifyPermission, remove);
+momentRouter.post('/update', verifyAuth, verifyPermission('moment'), update);
+momentRouter.post('/delete', verifyAuth, verifyPermission('moment'), remove);
 
 module.exports = momentRouter;

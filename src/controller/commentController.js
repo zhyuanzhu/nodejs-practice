@@ -12,11 +12,21 @@ class CommentController {
     ctx.body = result;
   }
 
-  // 恢复评论
+  // 回复评论
   async reply (ctx, next) {
     const { id, content, commentId } = ctx.request.body;
     const { id: userId } = ctx.user;
     const result = await service.reply(id, content, commentId, userId);
+    ctx.body = result;
+  }
+
+  // 修改
+  async update (ctx, next) {
+    // 需要修改的评论 id 和 修改内容
+    const { id, content } = ctx.request.body;
+
+    const result = await service.update(id, content);
+
     ctx.body = result;
   }
 }
