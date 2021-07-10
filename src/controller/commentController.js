@@ -12,12 +12,17 @@ class CommentController {
     ctx.body = result;
   }
 
-  // 回复评论
+  /**
+   * 
+   * @param {*} id 当前发布的动态的id，即 comment 表中的 moment_id
+   * @param {*} content 需要更新的状态
+   * @param {*} commentId 当前评论的 id，即 comment 表中的 id
+   */
   async reply (ctx, next) {
     const { id, content, commentId } = ctx.request.body;
     const { id: userId } = ctx.user;
     const result = await service.reply(id, content, commentId, userId);
-    ctx.body = result;
+    ctx.body = result; 
   }
 
   // 修改
