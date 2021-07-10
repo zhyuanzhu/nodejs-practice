@@ -47,6 +47,15 @@ class MomentController {
     const result = await momentService.update(content, id);
     ctx.body = result;
   }
+
+  async remove (ctx, next) {
+    // 获取 momentId
+    const { id } = ctx.request.body;
+
+    // 删除内容
+    const result = await momentService.removeById(id);
+    ctx.body = result;
+  }
 }
 
 module.exports = new MomentController();
