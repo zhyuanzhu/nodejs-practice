@@ -10,6 +10,7 @@ const {
   reply,
   update,
   remove,
+  list,
 } = require('../controller/commentController');
 
 
@@ -23,6 +24,9 @@ commentRouter.post('/reply', verifyAuth, reply);
 // 修改评论
 commentRouter.post('/update', verifyAuth, verifyPermission('comment'), update);
 // 删除评论
-commentRouter.post('/delete', verifyAuth, verifyPermission('comment'), remove)
+commentRouter.post('/delete', verifyAuth, verifyPermission('comment'), remove);
+
+// 获取评论列表
+commentRouter.get('/list', list);
 
 module.exports = commentRouter;
