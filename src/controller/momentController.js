@@ -40,6 +40,13 @@ class MomentController {
     const result = await momentService.queryMomentList(page, pageSize);
     ctx.body = result;
   }
+
+  async update (ctx, next) {
+    // 获取当前 id
+    const { content, id } = ctx.request.body;
+
+    ctx.body = `修改成功_${id}_${content}`
+  }
 }
 
 module.exports = new MomentController();

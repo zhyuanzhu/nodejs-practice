@@ -23,6 +23,10 @@ function errorHandler (error, ctx) {
       status = 200;
       message = '用户未授权';
       break;
+    case errorTypes.UNPERMISSION:
+      status = 200;
+      message = '用户没有权限';
+      break;
     default:
       status = 404;
       message = 'NOT FOUND ~'

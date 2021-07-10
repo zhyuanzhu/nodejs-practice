@@ -15,7 +15,6 @@ class MomentService {
   }
 
   async queryMomentList (offset, size) {
-    console.log(typeof offset, size);
     const statement = `SELECT m.id id, m.content content, m.createAt createAt, m.updateAt updateAt, JSON_OBJECT('user_name', u.name,'id', u.id) users FROM moment m LEFT JOIN users u ON m.user_id = u.id LIMIT ?,?;`;
     try {
       const result = await connections.execute(statement, [offset, size]);
