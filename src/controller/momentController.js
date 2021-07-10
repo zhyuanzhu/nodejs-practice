@@ -44,8 +44,8 @@ class MomentController {
   async update (ctx, next) {
     // 获取当前 id
     const { content, id } = ctx.request.body;
-
-    ctx.body = `修改成功_${id}_${content}`
+    const result = await momentService.update(content, id);
+    ctx.body = result;
   }
 }
 
