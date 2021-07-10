@@ -58,11 +58,19 @@ class MomentController {
   }
 
   async addLabels (ctx, next) {
-    const { labels, id } = ctx.request.body;
-    // const result = await momentService
-    console.log(labels);
+    const { id } = ctx.request.body;
+    const labels = ctx.labels;
+    let ret = '';
+    for (let label of labels) {
+      // 判断标签是否已经和动态有关系
+      const isExist = await momentService.hasLabel(id, label.id);
+      if (!isExist) {
+        ret += `${label.name},`
+        await momentService.addLabel(id, label.id);
+      }
+    }
 
-    ctx.body = `给动态添加标签__${labels}__${id}`
+    ctx.body = `给动态id: ${id} 添加 ${ret} 标签成功`;
   }
 }
 
