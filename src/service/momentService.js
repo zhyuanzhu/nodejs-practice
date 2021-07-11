@@ -37,7 +37,8 @@ class MomentService {
       SELECT 
       m.id id, m.content content, m.createAt createAt, m.updateAt updateAt, 
       JSON_OBJECT('user_name', u.name, 'id', u.id) users,
-      (SELECT COUNT(*) FROM comment c WHERE c.moment_id = m.id) mCount
+      (SELECT COUNT(*) FROM comment c WHERE c.moment_id = m.id) mCount,
+      (SELECT COUNT(*) FROM moment_label ml WHERE ml.moment_id = m.id) labeCount
       FROM moment m LEFT JOIN users u ON m.user_id = u.id LIMIT ?, ?;
     `;
     try {
